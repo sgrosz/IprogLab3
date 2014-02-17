@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DinnerPlanner</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome">Welcome to Dinner Planner!</string>
+    <string name="description1">Here you will be able to easily plan your dinner.</string>
+    <string name="description2">On the next page, start by selecting the number of guests and then you can select the courses.</string>
+    <string name="description3">Watch Magic Happen!</string>
+    <string name="startbutton">Start!</string>
+    <string name="numberofguests">Guests</string>
+    <string name="totalcost">Total Cost:</string>
+    <string name="kr">kr</string>
+    <string name="choose_menu">Choose menu</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="create_button">Create</string>
+    <string name="title_activity_results">Results</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="cost_text">"Cost: "</string>
+    <string name="_80">80</string>
+    <string name="currency_text">kr</string>
+    <string name="right_parenthesis">(</string>
+    <string name="dialog_cost_per_person_string">20</string>
+    <string name="dialog_rest_text">kr / person)</string>
+    <string name="left_parenthesis">(</string>
+    <string name="back">Back</string>
+    <string name="starter">Starter</string>
+    <string name="main_course">Main course</string>
+    <string name="dessert">Dessert</string>
+
+</resources>
