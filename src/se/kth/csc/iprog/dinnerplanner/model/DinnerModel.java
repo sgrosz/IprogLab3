@@ -259,4 +259,11 @@ public class DinnerModel implements IDinnerModel {
 		}
 		return totalPrice;
 	}
+	
+	public void addSelectedDish(Dish dish){
+		if(getSelectedDish(dish.type) != null){
+			selectedDishes.remove(dish);
+		}
+		selectedDishes.add(dish);
+	}
 }
