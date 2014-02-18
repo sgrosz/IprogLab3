@@ -29,5 +29,6 @@
     <string name="starter">Starter</string>
     <string name="main_course">Main course</string>
     <string name="dessert">Dessert</string>
+    <string name="choose_string">Choose</string>
 
 </resources>

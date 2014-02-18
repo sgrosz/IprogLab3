@@ -1,5 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
@@ -17,7 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ResultsView {
+public class ResultsView implements Observer {
 	View view;
 	DinnerModel model;
 	final Activity activity;
@@ -26,7 +28,7 @@ public class ResultsView {
 	ImageView ingredients, starter, main, dessert;
 	Dish starterD, mainD, dessertD;
 
-	public ResultsView(View view, final Activity activity, DinnerModel model){
+	public ResultsView(View view, final Activity activity, DinnerModel model) {
 		// store in the class the reference to the Android View
 		this.view = view;
 		this.activity = activity;
@@ -170,5 +172,11 @@ public class ResultsView {
 			}
 
 		}
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 }

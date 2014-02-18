@@ -64,26 +64,26 @@ public class DialogView {
 		perPersoncost.setText(Integer.toString(costPerPerson));//Cost per person
 
 		// Setting Positive "Yes" Button
-		alertDialog.setPositiveButton("Choose",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// Add this dish to the set of selected dishes here
-						
-						// Update value of total cost field
-						menuHeaderView.setTotalCostField(model.getTotalMenuPrice()*model.getNumberOfGuests());;
-						dialog.cancel();
-					}
-				});
+//		alertDialog.setPositiveButton("Choose",
+//				new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						// Add this dish to the set of selected dishes here
+//						
+//						// Update value of total cost field
+//						menuHeaderView.setTotalCostField(model.getTotalMenuPrice()*model.getNumberOfGuests());;
+//						dialog.cancel();
+//					}
+//				});
 
 		// Setting Negative "NO" Button
-		alertDialog.setNegativeButton("Cancel",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
+//		alertDialog.setNegativeButton("Cancel",
+//				new DialogInterface.OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						dialog.cancel();
+//					}
+//				});
 		// Showing Alert Message
 		alertDialog.show();
 	}
