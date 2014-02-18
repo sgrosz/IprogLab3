@@ -33,7 +33,6 @@ public class CourseView implements Observer {
 		this.dishType = dishType;
 		
 		// Create the header view, which needs to be controlled from the dialog view as well
-		menuHeaderView = new MenuHeaderView(activity.findViewById(R.layout.menu_header_view), model, activity);
 
 		// Setup the rest of the view layout
 		TextView header = (TextView) view.findViewById(R.id.course_type_header);

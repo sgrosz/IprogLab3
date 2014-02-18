@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
+import android.util.Log;
 import se.kth.csc.iprog.dinnerplanner.android.R;
 
 public class DinnerModel extends Observable implements IDinnerModel {
@@ -176,7 +177,8 @@ public class DinnerModel extends Observable implements IDinnerModel {
 		dish12.addIngredient(dish2ing2);
 		dish13.addIngredient(dish2ing2);
 		dish14.addIngredient(dish2ing2);
-		
+
+
 	}
 
 	/**

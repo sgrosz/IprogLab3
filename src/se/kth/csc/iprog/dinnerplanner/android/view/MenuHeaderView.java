@@ -1,18 +1,21 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
 
+
+import java.util.Observable;
+import java.util.Observer;
+
 import se.kth.csc.iprog.dinnerplanner.android.R;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import android.app.Activity;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MenuHeaderView {
+public class MenuHeaderView implements Observer{
 	View view;
-	EditText numOfGuestsField;
-	TextView costField;
+	public EditText numOfGuestsField;
+	public TextView costField;
 	final DinnerModel model;
 
 	public MenuHeaderView(View view, final DinnerModel model, Activity activity) {
@@ -24,46 +27,16 @@ public class MenuHeaderView {
 		// Setup the rest of the view layout
 		numOfGuestsField = (EditText) activity.findViewById(R.id.number_of_guests);
 		costField = (TextView) activity.findViewById(R.id.menu_total_cost_label);
-		
-		numOfGuestsField.addTextChangedListener(new TextWatcher(){
-			
-			@Override
-			public void afterTextChanged(Editable s) {
-				//Wow. Such code.
-				try{
-					model.setNumberOfGuests(Integer.parseInt(s.toString()));
-					costField.setText(Float.toString(model.getTotalMenuPrice()*model.getNumberOfGuests()));
-				} catch(Exception e){
-					model.setNumberOfGuests(0);
-				}
-
-				
-			}
-			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-					int arg3) {
-				// TODO Auto-generated method stub
-				
-			}
-
-		});
+		// Add to models observer list
+		model.addObserver(this);
 		
 	}
-	
-	/**
-	 * To be able to set the value of the total cost field from dialog view
-	 * (When user chooses a dish)
-	 * @param value
-	 */
-	public void setTotalCostField(Float value){
-		costField.setText(Float.toString(value));
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// Either way, the total cost field must be updated
+		costField.setText(Float.toString(model.getTotalMenuPrice()*model.getNumberOfGuests()));
+		
 	}
 
 }
