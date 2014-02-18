@@ -69,16 +69,6 @@ public class CourseView implements Observer {
 				}
 			});
 
-			image.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					DialogView dialogView = new DialogView(activity
-							.findViewById(R.layout.dialog_view), activity,
-							model, dishForDialog, menuHeaderView);
-					DialogViewController controller = new DialogViewController(model, dialogView);
-				}
-			});
 			TextView name = (TextView) view.findViewById(R.id.course_name);
 			image.setImageResource(dish.getImage());
 			name.setText(dish.getName());

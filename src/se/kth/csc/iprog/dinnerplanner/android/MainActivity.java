@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import se.kth.csc.iprog.dinnerplanner.android.controller.WelcomeViewController;
+import se.kth.csc.iprog.dinnerplanner.android.view.DialogView;
 import se.kth.csc.iprog.dinnerplanner.android.view.WelcomeView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import android.app.Activity;
@@ -20,10 +21,13 @@ public class MainActivity extends Activity {
 
 		// Set the view for the main activity screen
 		// it must come before any call to findViewById method
-		setContentView(R.layout.activity_main);
-		// Creating the menu header instance
-		welcomeView = new WelcomeView(findViewById(R.layout.welcome_view), this);
-		controller = new WelcomeViewController(welcomeView);
+//		setContentView(R.layout.activity_main);
+//		// Creating the menu header instance
+//		welcomeView = new WelcomeView(findViewById(R.layout.welcome_view), this);
+//		controller = new WelcomeViewController(welcomeView);
+		setContentView(R.layout.activity_dialog);
+		DialogView dialogView = new DialogView(
+				findViewById(R.layout.dialog_view), this, model);
 	}
 
 }

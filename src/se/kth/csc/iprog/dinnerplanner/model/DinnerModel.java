@@ -13,6 +13,7 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	int numberOfGuests;
 	Set<Dish> selectedDishes = new HashSet<Dish>();
 	Set<Dish> dishes = new HashSet<Dish>();
+	public Dish dish1;
 
 	/**
 	 * The constructor of the overall model. Set the default values here
@@ -20,7 +21,7 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	public DinnerModel() {
 
 		// Adding some example data, you can add more
-		Dish dish1 = new Dish(
+		dish1 = new Dish(
 				"French toast",
 				Dish.STARTER,
 				R.drawable.toast,

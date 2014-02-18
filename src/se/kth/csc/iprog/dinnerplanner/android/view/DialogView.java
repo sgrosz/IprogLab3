@@ -24,24 +24,21 @@ public class DialogView {
 	Activity activity;
 	Context context;
 	TextView totalCost;
-	public Dish dish;
-	MenuHeaderView menuHeaderView;
+	Dish dish;
 	public Button chooseButton;
 	public Button cancelButton;
 	public AlertDialog alertDialogReference;
 
-	public DialogView(View view, final Activity activity, final DinnerModel model,
-			final Dish dish, final MenuHeaderView menuHeaderView) {
+	public DialogView(View view, final Activity activity, final DinnerModel model) {
 		// store in the class the reference to the Android View
 		this.view = view;
 		this.activity = activity;
 		this.model = model;
 		this.context = activity;
-		this.dish = dish;
-		this.menuHeaderView = menuHeaderView;
 		chooseButton = (Button) activity.findViewById(R.id.choose_button);
 		cancelButton = (Button) activity.findViewById(R.id.cancel_button);
 		totalCost = (TextView) activity.findViewById(R.id.menu_total_cost_label);
+		dish = model.dish1;
 		
 		Set<Ingredient> ingredients = dish.getIngredients();
 		int costPerPerson = 0;
@@ -52,10 +49,8 @@ public class DialogView {
 
 		LayoutInflater inflater = LayoutInflater.from(context);
 
-		AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 		LinearLayout dialogLayout = (LinearLayout) inflater.inflate(
 				R.layout.dialog_view, null);
-		alertDialog.setView(dialogLayout);
 		ImageView image = (ImageView) dialogLayout
 				.findViewById(R.id.dialog_picture);
 		image.setImageResource(dish.getImage());
@@ -68,7 +63,6 @@ public class DialogView {
 		TextView perPersoncost = (TextView) dialogLayout
 				.findViewById(R.id.dialog_cost_per_person);
 		perPersoncost.setText(Integer.toString(costPerPerson));//Cost per person
-		alertDialogReference =  alertDialog.show();
 		
 	}
 }

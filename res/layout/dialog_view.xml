@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <TextView
@@ -94,7 +94,8 @@
             android:id="@+id/cancel_button"
             style="@style/ButtonStyle"
             android:background="@drawable/button_shape"
-            android:text="@string/cancel" />
+            android:text="@string/cancel"
+            android:paddingRight="10dp" />
         
         <Button
             android:id="@+id/choose_button"
