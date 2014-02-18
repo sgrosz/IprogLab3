@@ -3,6 +3,7 @@ package se.kth.csc.iprog.dinnerplanner.android.view;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
+import se.kth.csc.iprog.dinnerplanner.android.controller.DialogViewController;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,8 +24,11 @@ public class DialogView {
 	Activity activity;
 	Context context;
 	TextView totalCost;
-	private Dish dish;
+	public Dish dish;
 	MenuHeaderView menuHeaderView;
+	public Button chooseButton;
+	public Button cancelButton;
+	public AlertDialog alertDialogReference;
 
 	public DialogView(View view, final Activity activity, final DinnerModel model,
 			final Dish dish, final MenuHeaderView menuHeaderView) {
@@ -34,7 +39,8 @@ public class DialogView {
 		this.context = activity;
 		this.dish = dish;
 		this.menuHeaderView = menuHeaderView;
-		
+		chooseButton = (Button) activity.findViewById(R.id.choose_button);
+		cancelButton = (Button) activity.findViewById(R.id.cancel_button);
 		totalCost = (TextView) activity.findViewById(R.id.menu_total_cost_label);
 		
 		Set<Ingredient> ingredients = dish.getIngredients();
@@ -62,29 +68,7 @@ public class DialogView {
 		TextView perPersoncost = (TextView) dialogLayout
 				.findViewById(R.id.dialog_cost_per_person);
 		perPersoncost.setText(Integer.toString(costPerPerson));//Cost per person
-
-		// Setting Positive "Yes" Button
-//		alertDialog.setPositiveButton("Choose",
-//				new DialogInterface.OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						// Add this dish to the set of selected dishes here
-//						
-//						// Update value of total cost field
-//						menuHeaderView.setTotalCostField(model.getTotalMenuPrice()*model.getNumberOfGuests());;
-//						dialog.cancel();
-//					}
-//				});
-
-		// Setting Negative "NO" Button
-//		alertDialog.setNegativeButton("Cancel",
-//				new DialogInterface.OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						dialog.cancel();
-//					}
-//				});
-		// Showing Alert Message
-		alertDialog.show();
+		alertDialogReference =  alertDialog.show();
+		
 	}
 }

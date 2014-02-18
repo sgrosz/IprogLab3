@@ -14,13 +14,21 @@ public class DialogViewController implements OnClickListener{
 		this.model = model;
 		this.view = view;
 		
-		
+		view.chooseButton.setOnClickListener(this);
+		view.cancelButton.setOnClickListener(this);
 	}
 	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		if (v.equals(view.chooseButton)) {
+			model.addSelectedDish(view.dish);
+			view.alertDialogReference.dismiss();
+		}
 		
+		if (v.equals(view.cancelButton)) {
+			view.alertDialogReference.dismiss();
+		}
 	}
 
 }

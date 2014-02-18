@@ -5,6 +5,7 @@ import java.util.Observer;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
+import se.kth.csc.iprog.dinnerplanner.android.controller.DialogViewController;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import android.app.Activity;
@@ -76,6 +77,7 @@ public class CourseView implements Observer {
 					DialogView dialogView = new DialogView(activity
 							.findViewById(R.layout.dialog_view), activity,
 							model, dishForDialog, menuHeaderView);
+					DialogViewController controller = new DialogViewController(model, dialogView);
 				}
 			});
 			TextView name = (TextView) view.findViewById(R.id.course_name);

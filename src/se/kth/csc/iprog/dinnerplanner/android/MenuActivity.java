@@ -1,5 +1,6 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
+import se.kth.csc.iprog.dinnerplanner.android.controller.CreateButtonViewController;
 import se.kth.csc.iprog.dinnerplanner.android.view.CourseView;
 import se.kth.csc.iprog.dinnerplanner.android.view.CreateButtonView;
 import se.kth.csc.iprog.dinnerplanner.android.view.MenuHeaderView;
@@ -26,6 +27,7 @@ public class MenuActivity extends Activity {
 		// Create the view instances
 		createButtonView = new CreateButtonView(
 				findViewById(R.layout.create_button_view), model, this);
+		CreateButtonViewController cbvc = new CreateButtonViewController(createButtonView);
 		courseView1 = new CourseView(findViewById(R.id.course_view_1), model,
 				Dish.STARTER, this);
 		courseView2 = new CourseView(findViewById(R.id.course_view_2), model,
