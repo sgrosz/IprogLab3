@@ -5,6 +5,7 @@ import java.util.Observer;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
+import se.kth.csc.iprog.dinnerplanner.android.controller.ResultsViewController;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
@@ -22,17 +23,18 @@ import android.widget.TextView;
 public class ResultsView implements Observer {
 	View view;
 	DinnerModel model;
-	final Activity activity;
-	Button backButton;
-	TextView instructionHeader, instructionView, totalCost;
-	ImageView ingredients, starter, main, dessert;
-	Dish starterD, mainD, dessertD;
+	public final Activity activity;
+	public Button backButton;
+	public TextView instructionHeader, instructionView, totalCost;
+	public ImageView ingredients, starter, main, dessert;
+	public Dish starterD, mainD, dessertD;
 
 	public ResultsView(View view, final Activity activity, DinnerModel model) {
 		// store in the class the reference to the Android View
 		this.view = view;
 		this.activity = activity;
 		this.model = model;
+		model.addObserver(this);
 
 		starterD = model.getSelectedDish(1);
 		mainD = model.getSelectedDish(2);
@@ -45,41 +47,19 @@ public class ResultsView implements Observer {
 
 		// The four images for ingredients, starter, main course, and dessert
 		ingredients = (ImageView) activity.findViewById(R.id.ingredients_image_view);
-		ingredients.setOnTouchListener(new mOnTouchListener());
-		ingredients.setOnClickListener(new mOnClickListener());
-
 		starter = (ImageView) activity.findViewById(R.id.results_starter_image);
-		if(starterD != null){
-			starter.setOnTouchListener(new mOnTouchListener());
-			starter.setOnClickListener(new mOnClickListener());
-			starter.setImageResource(starterD.getImage());
-		}
-
-
 		main = (ImageView) activity.findViewById(R.id.results_main_image);
-		if(mainD != null){
-			main.setOnTouchListener(new mOnTouchListener());
-			main.setOnClickListener(new mOnClickListener());
-			main.setImageResource(mainD.getImage());
-		}
-
 		dessert = (ImageView) activity.findViewById(R.id.results_dessert_image);
-		if(dessertD != null){
-			dessert.setOnTouchListener(new mOnTouchListener());
-			dessert.setOnClickListener(new mOnClickListener());
+		if(starterD != null)
+			starter.setImageResource(starterD.getImage());
+		if(mainD != null)
+			main.setImageResource(mainD.getImage());
+		if(dessertD != null)
 			dessert.setImageResource(dessertD.getImage());
-		}
 
 		// Setup the rest of the view layout
 		backButton = (Button) activity.findViewById(R.id.back_button);
-		backButton.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				activity.finish();
-
-			}
-		});
 		
 		// Show total cost for the hela kalaset
 		totalCost.setText(Float.toString(model.getTotalMenuPrice()*model.getNumberOfGuests()));
@@ -95,88 +75,27 @@ public class ResultsView implements Observer {
 		}
 		instructionView.setText(sb.toString());
 
+
 	}
 
-	/**
-	 * Private class to set new OnTouchListeners to each of the four images
-	 * in this class
-	 *
-	 */
-	private class mOnTouchListener implements OnTouchListener{
-		ImageView image;
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			// Cast the view as an ImageView as this is the only view using this
-			image = (ImageView) v;
-			switch (event.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				image.setColorFilter(Color.parseColor("#EDEDCC"),
-						Mode.SCREEN);
-				break;
-			case MotionEvent.ACTION_UP:
-				image.clearColorFilter();
-				break;
-			case MotionEvent.ACTION_CANCEL:
-				image.clearColorFilter();
-			}
-			return false;
-		}
-	}
 
-	/**
-	 * Same, but for an OnClickListener and for the same reason
-	 * 
-	 */
-	private class mOnClickListener implements OnClickListener{
-		ImageView image;
-
-
-		@Override
-		public void onClick(View v) {
-			image = (ImageView) v;
-			StringBuilder sb = new StringBuilder();
-
-			switch (image.getId()){
-			case R.id.ingredients_image_view:
-				instructionHeader.setText(R.string.ingredients);
-				sb.append(model.getNumberOfGuests() + " attendees\n");
-				sb.append("\n");
-				Set<Ingredient> ingredientSet = model.getAllIngredients();
-				for(Ingredient ing: ingredientSet){
-					sb.append(ing.getName() + " " + ing.getQuantity() + " " + ing.getUnit() + "\n");
-				}
-				instructionView.setText(sb.toString());
-				break;
-
-			case R.id.results_starter_image:
-				instructionHeader.setText(R.string.starter);
-				if (starterD!= null)
-					instructionView.setText("\n"+ starterD.getDescription());
-				break;
-
-			case R.id.results_main_image:
-				instructionHeader.setText(R.string.main_course);
-				if (mainD!= null)
-					instructionView.setText("\n"+ mainD.getDescription());
-				break;
-
-			case R.id.results_dessert_image:
-				instructionHeader.setText(R.string.dessert);
-				if (dessertD!= null)
-					instructionView.setText("\n"+ dessertD.getDescription());
-				break;
-
-			default:
-				break;
-
-			}
-
-		}
-	}
 
 	@Override
 	public void update(Observable observable, Object data) {
-		// TODO Auto-generated method stub
+		// Either way, the total cost field must be updated
+		totalCost.setText(Float.toString(model.getTotalMenuPrice()*model.getNumberOfGuests()));
+		// But if the dishes have changed, we need to update the view
+		if(data == "dishChanged"){
+			starterD = model.getSelectedDish(1);
+			mainD = model.getSelectedDish(2);
+			dessertD = model.getSelectedDish(3);
+			if(starterD != null)
+				starter.setImageResource(starterD.getImage());
+			if(mainD != null)
+				main.setImageResource(mainD.getImage());
+			if(dessertD != null)
+				dessert.setImageResource(dessertD.getImage());
+		}
 		
 	}
 }
