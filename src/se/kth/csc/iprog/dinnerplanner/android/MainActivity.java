@@ -1,5 +1,6 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
+import se.kth.csc.iprog.dinnerplanner.android.controller.WelcomeViewController;
 import se.kth.csc.iprog.dinnerplanner.android.view.WelcomeView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 public class MainActivity extends Activity {
 	WelcomeView welcomeView;
 	DinnerModel model;
+	WelcomeViewController controller;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		// Creating the menu header instance
 		welcomeView = new WelcomeView(findViewById(R.layout.welcome_view), this);
+		controller = new WelcomeViewController(welcomeView);
 	}
 
 }
