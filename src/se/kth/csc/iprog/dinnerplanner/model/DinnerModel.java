@@ -1,11 +1,13 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
 import java.util.HashSet;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
 
-public class DinnerModel implements IDinnerModel {
+public class DinnerModel extends Observable implements IDinnerModel {
 
 	int numberOfGuests;
 	Set<Dish> selectedDishes = new HashSet<Dish>();
@@ -224,6 +226,8 @@ public class DinnerModel implements IDinnerModel {
 	@Override
 	public void setNumberOfGuests(int numberOfGuests) {
 		this.numberOfGuests = numberOfGuests;
+		setChanged();
+		notifyObservers("guestsChanged");
 	}
 
 	@Override
@@ -265,5 +269,7 @@ public class DinnerModel implements IDinnerModel {
 			selectedDishes.remove(dish);
 		}
 		selectedDishes.add(dish);
+		setChanged();
+		notifyObservers("dishAdded");
 	}
 }
