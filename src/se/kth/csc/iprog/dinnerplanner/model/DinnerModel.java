@@ -266,7 +266,7 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	
 	public void addSelectedDish(Dish dish){
 		if(getSelectedDish(dish.type) != null){
-			selectedDishes.remove(dish);
+			selectedDishes.remove(getSelectedDish(dish.type));
 		}
 		selectedDishes.add(dish);
 		setChanged();
