@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
 import se.kth.csc.iprog.dinnerplanner.android.controller.WelcomeViewController;
+import se.kth.csc.iprog.dinnerplanner.android.view.DialogView;
 import se.kth.csc.iprog.dinnerplanner.android.view.WelcomeView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import android.app.Activity;
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 		// Creating the menu header instance
 		welcomeView = new WelcomeView(findViewById(R.layout.welcome_view), this);
 		controller = new WelcomeViewController(welcomeView);
+
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
+import android.util.Log;
 import se.kth.csc.iprog.dinnerplanner.android.R;
 
 public class DinnerModel extends Observable implements IDinnerModel {
@@ -12,6 +13,8 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	int numberOfGuests;
 	Set<Dish> selectedDishes = new HashSet<Dish>();
 	Set<Dish> dishes = new HashSet<Dish>();
+	public Dish dish1;
+	Dish clickedDish;
 
 	/**
 	 * The constructor of the overall model. Set the default values here
@@ -19,7 +22,7 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	public DinnerModel() {
 
 		// Adding some example data, you can add more
-		Dish dish1 = new Dish(
+		dish1 = new Dish(
 				"French toast",
 				Dish.STARTER,
 				R.drawable.toast,
@@ -176,7 +179,8 @@ public class DinnerModel extends Observable implements IDinnerModel {
 		dish12.addIngredient(dish2ing2);
 		dish13.addIngredient(dish2ing2);
 		dish14.addIngredient(dish2ing2);
-		
+
+
 	}
 
 	/**
@@ -268,5 +272,13 @@ public class DinnerModel extends Observable implements IDinnerModel {
 		selectedDishes.add(dish);
 		setChanged();
 		notifyObservers("dishAdded");
+	}
+	
+	public void setClickedDish(Dish dish){
+		clickedDish = dish;
+	}
+	
+	public Dish getClickedDish(){
+		return clickedDish;
 	}
 }
