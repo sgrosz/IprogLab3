@@ -1,5 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
@@ -16,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CourseView {
+public class CourseView implements Observer {
 	View view;
 	DinnerModel model;
 	int dishType;
@@ -45,6 +47,8 @@ public class CourseView {
 			final ImageView image = (ImageView) view
 					.findViewById(R.id.course_image);
 			final Dish dishForDialog = dish;
+			
+			// Only creates visual feedback when tapping the image.
 			image.setOnTouchListener(new OnTouchListener() {
 
 				@Override
@@ -78,5 +82,11 @@ public class CourseView {
 			image.setImageResource(dish.getImage());
 			name.setText(dish.getName());
 		}
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 }

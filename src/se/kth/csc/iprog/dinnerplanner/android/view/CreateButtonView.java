@@ -1,4 +1,6 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
+import java.util.Observable;
+import java.util.Observer;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
 import se.kth.csc.iprog.dinnerplanner.android.ResultsActivity;
@@ -9,7 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class CreateButtonView {
+public class CreateButtonView implements Observer {
 	View view;
 	final Activity activity;
 	DinnerModel model;
@@ -32,5 +34,11 @@ public class CreateButtonView {
 
 			}
 		});
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 }
