@@ -1,5 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
@@ -23,6 +25,7 @@ public class CourseView implements Observer {
 	DinnerModel model;
 	int dishType;
 	MenuHeaderView menuHeaderView;
+	public Map<Dish, ImageView> dishImages = new HashMap<Dish, ImageView>();
 
 	public CourseView(View view, final DinnerModel model, int dishType,
 			final Activity activity) {
@@ -30,9 +33,6 @@ public class CourseView implements Observer {
 		this.view = view;
 		this.model = model;
 		this.dishType = dishType;
-		
-		// Create the header view, which needs to be controlled from the dialog view as well
-		menuHeaderView = new MenuHeaderView(activity.findViewById(R.layout.menu_header_view), model, activity);
 
 		// Setup the rest of the view layout
 		TextView header = (TextView) view.findViewById(R.id.course_type_header);
@@ -47,29 +47,9 @@ public class CourseView implements Observer {
 			final ImageView image = (ImageView) view
 					.findViewById(R.id.course_image);
 			final Dish dishForDialog = dish;
-			
-			// Only creates visual feedback when tapping the image.
-			image.setOnTouchListener(new OnTouchListener() {
+			dishImages.put(dish, image);
 
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					switch (event.getAction()) {
-					case MotionEvent.ACTION_DOWN:
-						image.setColorFilter(Color.parseColor("#EDEDCC"),
-								Mode.SCREEN);
-						break;
-					case MotionEvent.ACTION_UP:
-						image.clearColorFilter();
-						break;
-					case MotionEvent.ACTION_CANCEL:
-						image.clearColorFilter();
-						break;
-					}
-					return false;
-				}
-			});
-
-			image.setOnClickListener(new OnClickListener() {
+			/**image.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
@@ -77,7 +57,7 @@ public class CourseView implements Observer {
 							.findViewById(R.layout.dialog_view), activity,
 							model, dishForDialog, menuHeaderView);
 				}
-			});
+			});*/
 			TextView name = (TextView) view.findViewById(R.id.course_name);
 			image.setImageResource(dish.getImage());
 			name.setText(dish.getName());

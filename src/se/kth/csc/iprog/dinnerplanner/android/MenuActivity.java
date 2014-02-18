@@ -1,5 +1,6 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
+import se.kth.csc.iprog.dinnerplanner.android.controller.CourseViewController;
 import se.kth.csc.iprog.dinnerplanner.android.view.CourseView;
 import se.kth.csc.iprog.dinnerplanner.android.view.CreateButtonView;
 import se.kth.csc.iprog.dinnerplanner.android.view.MenuHeaderView;
@@ -15,6 +16,9 @@ public class MenuActivity extends Activity {
 	CourseView courseView1;
 	CourseView courseView2;
 	CourseView courseView3;
+	CourseViewController controller1;
+	CourseViewController controller2;
+	CourseViewController controller3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +32,13 @@ public class MenuActivity extends Activity {
 				findViewById(R.layout.create_button_view), model, this);
 		courseView1 = new CourseView(findViewById(R.id.course_view_1), model,
 				Dish.STARTER, this);
+		controller1 = new CourseViewController(model, courseView1);
 		courseView2 = new CourseView(findViewById(R.id.course_view_2), model,
 				Dish.MAIN, this);
+		controller2 = new CourseViewController(model, courseView2);
 		courseView3 = new CourseView(findViewById(R.id.course_view_3), model,
 				Dish.DESSERT, this);
+		controller3 = new CourseViewController(model, courseView3);
 	}
 
 }
