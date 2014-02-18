@@ -25,5 +25,15 @@
         <!-- <item name="android:background">#AB2F44</item> -->
         <item name="android:textColor">#FFFFFF</item>
     </style>
+    
+    <style name="Theme.D1NoTitleDim" parent="android:style/Theme.Translucent">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:backgroundDimEnabled">true</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFrame">@null</item>
+	</style>
 
 </resources>

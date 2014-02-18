@@ -37,7 +37,8 @@
         <activity
             android:screenOrientation="portrait"
             android:name="se.kth.csc.iprog.dinnerplanner.android.DialogActivity"
-            android:label="@string/title_activity_dialog" >
+            android:label="@string/title_activity_dialog"
+            android:theme="@style/Theme.D1NoTitleDim" >
         </activity>
     </application>
 

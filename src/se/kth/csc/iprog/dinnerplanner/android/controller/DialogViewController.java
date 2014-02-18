@@ -3,7 +3,6 @@ package se.kth.csc.iprog.dinnerplanner.android.controller;
 import se.kth.csc.iprog.dinnerplanner.android.view.DialogView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 

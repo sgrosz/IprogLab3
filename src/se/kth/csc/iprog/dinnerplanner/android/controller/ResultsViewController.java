@@ -56,7 +56,6 @@ public class ResultsViewController implements OnClickListener{
 
 		switch (image.getId()){
 		case R.id.ingredients_image_view:
-			Log.e("STJÄRT", "KUK");
 			view.instructionHeader.setText(R.string.ingredients);
 			sb.append(model.getNumberOfGuests() + " attendees\n");
 			sb.append("\n");
