@@ -1,20 +1,16 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.android.R;
-import se.kth.csc.iprog.dinnerplanner.android.controller.DialogViewController;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +20,8 @@ public class CourseView implements Observer {
 	DinnerModel model;
 	int dishType;
 	MenuHeaderView menuHeaderView;
+	public Activity activity;
+	public Map<ImageView, Dish> dishImages = new HashMap<ImageView, Dish>();
 
 	public CourseView(View view, final DinnerModel model, int dishType,
 			final Activity activity) {
@@ -31,6 +29,7 @@ public class CourseView implements Observer {
 		this.view = view;
 		this.model = model;
 		this.dishType = dishType;
+		this.activity = activity;
 		
 
 		// Setup the rest of the view layout
@@ -45,28 +44,7 @@ public class CourseView implements Observer {
 			container.addView(courseElement, 0);
 			final ImageView image = (ImageView) view
 					.findViewById(R.id.course_image);
-			final Dish dishForDialog = dish;
-			
-			// Only creates visual feedback when tapping the image.
-			image.setOnTouchListener(new OnTouchListener() {
-
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					switch (event.getAction()) {
-					case MotionEvent.ACTION_DOWN:
-						image.setColorFilter(Color.parseColor("#EDEDCC"),
-								Mode.SCREEN);
-						break;
-					case MotionEvent.ACTION_UP:
-						image.clearColorFilter();
-						break;
-					case MotionEvent.ACTION_CANCEL:
-						image.clearColorFilter();
-						break;
-					}
-					return false;
-				}
-			});
+			dishImages.put(image, dish);
 
 			TextView name = (TextView) view.findViewById(R.id.course_name);
 			image.setImageResource(dish.getImage());

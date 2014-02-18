@@ -14,6 +14,7 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	Set<Dish> selectedDishes = new HashSet<Dish>();
 	Set<Dish> dishes = new HashSet<Dish>();
 	public Dish dish1;
+	Dish clickedDish;
 
 	/**
 	 * The constructor of the overall model. Set the default values here
@@ -271,5 +272,13 @@ public class DinnerModel extends Observable implements IDinnerModel {
 		selectedDishes.add(dish);
 		setChanged();
 		notifyObservers("dishAdded");
+	}
+	
+	public void setClickedDish(Dish dish){
+		clickedDish = dish;
+	}
+	
+	public Dish getClickedDish(){
+		return clickedDish;
 	}
 }
